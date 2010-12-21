@@ -1,0 +1,6 @@
+How to Install: On Windows
+
+1. Clone the Repository "git clone git://github.com/ArcterusEmu/database.git" with the Git Bash or download the Source code over Web.
+1.2. Just if you downloaded it over Web, extract the zip file or tarball.
+
+2. Run the installer.bat and fill out the required information.
