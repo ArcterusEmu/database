@@ -30,9 +30,9 @@ set /p pass=What is your MySQL password?            [ ]           :
 if %pass%. == . set pass=
 set /p port=What is your MySQL port?                [3306]        : 
 if %port%. == . set port=3306
-set /p adb=What is your Auth database name?         [auth]        :
+set /p adb=What is your Auth database name?         [auth]        : 
 if %adb%. == . set adb=auth
-set /p cdb=What is your Characters database name?  [characters]  :
+set /p cdb=What is your Characters database name?   [characters]  : 
 if %cdb%. == . set cdb=characters
 set /p wdb=What is your World database name?        [world]       : 
 if %wdb%. == . set wdb=world
@@ -98,7 +98,7 @@ goto :patch
 if %quick% == off echo.
 if %quick% == off echo Do you want to patch your Databases?
 if %quick% == off set /p yesno=Do you wish to continue? (y/n) 
-if %quick% == off if %yesno% neq y if %yesno% neq Y goto done
+if %quick% == off if %yesno% neq y if %yesno% neq Y goto translategerman
 
 echo.
 echo Importing Auth Patches
@@ -114,6 +114,23 @@ echo.
 echo Importing World Patches
 
 for %%i in (%dbpath%\patches\world\*.sql) do if %%i neq %dbpath%\patches\world\*.sql) if %%i neq %dbpath%\patches\world\*.sql) if %%i neq %dbpath%\patches\world\*.sql) echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% --max_allowed_packet=4096M %wdb% < %%i
+
+if %quick% neq off goto :eof
+goto :translategerman
+
+:translategerman
+if %quick% == off echo.
+if %quick% == off echo This will translate your database into german.
+if %quick% == off set /p yesno=Do you wish to continue? (y/n) 
+if %quick% == off if %yesno% neq y if %yesno% neq Y goto done
+
+echo.
+echo Importing German Database Translations
+
+for %%i in (%dbpath%\translations\german\*.sql) do if %%i neq %dbpath%\translations\german\*.sql) if %%i neq %dbpath%\translations\german\*.sql) if %%i neq %dbpath%\translations\german\*.sql) echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% --max_allowed_packet=4096M %adb% < %%i
+
+if %quick% neq off goto :eof
+goto :done
 
 :if %quick% neq off goto :eof
 
