@@ -127,7 +127,7 @@ if %quick% == off if %yesno% neq y if %yesno% neq Y goto done
 echo.
 echo Importing German Database Translations
 
-for %%i in (%dbpath%\translations\german\*.sql) do if %%i neq %dbpath%\translations\german\*.sql) if %%i neq %dbpath%\translations\german\*.sql) if %%i neq %dbpath%\translations\german\*.sql) echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% --max_allowed_packet=4096M %adb% < %%i
+for %%i in (%dbpath%\translations\german\*.sql) do if %%i neq %dbpath%\translations\german\*.sql) if %%i neq %dbpath%\translations\german\*.sql) if %%i neq %dbpath%\translations\german\*.sql) echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% --max_allowed_packet=4096M %wdb% < %%i
 
 if %quick% neq off goto :eof
 goto :done
